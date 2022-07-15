@@ -1,4 +1,10 @@
 import { resolvers as videoResolvers } from './video/resolvers';
+import { resolvers as modelResolvers } from './model/resolvers';
+
+export const resolvers = mergeResolvers([
+  videoResolvers,
+  modelResolvers
+]);
 
 function mergeResolvers(resolvers: any) {
   const response:any = {
@@ -19,6 +25,3 @@ function mergeResolvers(resolvers: any) {
 
   return response;
 }
-
-export const resolvers = mergeResolvers([videoResolvers]);
-

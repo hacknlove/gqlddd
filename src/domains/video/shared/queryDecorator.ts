@@ -1,4 +1,4 @@
-export const queryDecorator = (query) => {
+export const queryDecorator = (query = {}): any => {
   const date = new Date();
   return {
     removed: false,

@@ -1,11 +1,12 @@
+import { ObjectId } from "mongodb";
 import mongoProxy from "../../../mongoProxy"
 import { queryDecorator } from "../shared/queryDecorator"
 
-export const Video = async (_parent: any, args: { videoId: string; slug: string; site: string }, _context: any, _info: any) => {
-  const query = queryDecorator({})
+export const Video = async (_parent: any, args: { _id: string; slug: string; site: string }, _context: any, _info: any) => {
+  const query = queryDecorator()
 
-  if (args.videoId) {
-    query.videoId = args.videoId
+  if (args._id) {
+    query._id = new ObjectId(args._id)
   }
   if (args.slug) {
     query.targetUrl = `/${args.slug}`
@@ -19,12 +20,7 @@ export const Video = async (_parent: any, args: { videoId: string; slug: string;
 }
 
 export const typeDefs = `
-input VideoInput {
-  videoId: ID
-  slug: String
-  site: Site
-}
 type Query {
-  Video(videoId: ID, slug: String, site: Site): Video
+  Video(_id: ID, slug: String, site: String): Video
 }
 `
