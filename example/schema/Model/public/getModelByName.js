@@ -1,4 +1,4 @@
-import mongoProxy from "../../../mongoProxy";
+import mongoProxy from "../../../lib/mongoProxy";
 
 export async function getModelsByNames({ names, site }) {
   await mongoProxy.waitFor;

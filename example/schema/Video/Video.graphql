@@ -1,0 +1,10 @@
+type Query {
+  Video(_id: ID, slug: String, site: String): Video
+}
+
+type Video {
+    _id: ID!
+    slug: String
+    site: String,
+    models: [Model]
+}

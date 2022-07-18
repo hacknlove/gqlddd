@@ -1,9 +1,9 @@
 import { ObjectId } from "mongodb";
-import mongoProxy from "../../../mongoProxy"
-import { queryDecorator } from "../shared/queryDecorator"
+import mongoProxy from "../../lib/mongoProxy"
+import { queryDecorator } from "./shared/queryDecorator"
 
-export const Video = async (_parent: any, args: { _id: string; slug: string; site: string }, _context: any, _info: any) => {
-  const query = queryDecorator()
+export const Video = async (_parent, args, _context, _info) => {
+  const query = {}
 
   if (args._id) {
     query._id = new ObjectId(args._id)

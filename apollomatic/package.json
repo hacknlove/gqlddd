@@ -1,0 +1,22 @@
+{
+  "name": "apollomatic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hacknlove/gqlddd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hacknlove/gqlddd/issues"
+  },
+  "homepage": "https://github.com/hacknlove/gqlddd#readme",
+  "dependencies": {
+    "glob": "^8.0.3"
+  }
+}

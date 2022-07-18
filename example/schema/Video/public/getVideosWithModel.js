@@ -1,11 +1,11 @@
-import mongoProxy from "../../../mongoProxy";
+import mongoProxy from "../../../lib/mongoProxy";
 
 export async function getVideosWithModel({ name, site }) {
   await mongoProxy.waitFor;
 
   const query = {
     models: name
-  } as any
+  }
 
   if (site) {
     query.primarySite = site;
