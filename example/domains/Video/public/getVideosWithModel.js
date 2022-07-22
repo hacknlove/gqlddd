@@ -1,4 +1,4 @@
-import mongoProxy from "../../../lib/mongoProxy";
+import mongoProxy from "~/lib/mongoProxy";
 
 export async function getVideosWithModel({ name, site }) {
   await mongoProxy.waitFor;

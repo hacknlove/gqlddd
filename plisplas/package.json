@@ -1,5 +1,5 @@
 {
-  "name": "apollomatic",
+  "name": "plisplas",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,6 +17,13 @@
   },
   "homepage": "https://github.com/hacknlove/gqlddd#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "deepmerge": "^4.2.2",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
     "glob": "^8.0.3"
+  },
+  "devDependencies": {
+    "tsc-alias": "^1.7.0"
   }
 }

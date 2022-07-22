@@ -1,8 +1,8 @@
-const { readFile, appendFile } = require('fs/promises')
+const { appendFile } = require('fs/promises')
 
 const glob = require('util').promisify(require('glob'))
 
-const parseRegex =/schema\/(?<directory>.*)\/(?<filename>.*)\.(?<type>.*?)\.js$/
+const parseRegex =/domains\/.*?(?<directory>[^\/].*)\/(?<filename>.*)\.(?<type>.*?)\.js$/
 
 function getName (directory, filename) {
   return filename === 'index'
@@ -10,10 +10,10 @@ function getName (directory, filename) {
     : filename
 }
 
-const resolversFileName = './.apollomatic/resolvers.js'
+const resolversFileName = './.plisplas/resolvers.js'
 
 module.exports = async function buildResolvers () {
-  const files = await glob('./schema/**/*.{query,mutation,type,field}.js')
+  const files = await glob('./domains/**/*.{query,mutation,type,field}.js')
 
   const kinds = {
     query: [],
@@ -57,7 +57,7 @@ module.exports = async function buildResolvers () {
       }
     }
 
-    await appendFile(resolversFileName, `import ${importName} from '${path}';\n`);
+    await appendFile(resolversFileName, `import ${importName} from '.${path}';\n`);
   }
 
   await appendFile(resolversFileName, `\nexport default {\n`);
@@ -65,17 +65,15 @@ module.exports = async function buildResolvers () {
   if (kinds.query.length) {
     await appendFile(resolversFileName, `\tQuery: {\n`)
     for (const query of kinds.query) {
-      console.log(query)
       await appendFile(resolversFileName, `\t\t${query.name}: ${query.importName},\n`);
     }
     await appendFile(resolversFileName, `\t},\n`)
   }
 
   if (kinds.mutation.length) {
-    await appendFile(resolversFileName, `\tQuery: {\n`)
-    for (const query of kinds.query) {
-      console.log(query)
-      await appendFile(resolversFileName, `\t\t${query.name}: ${query.importName},\n`);
+    await appendFile(resolversFileName, `\tMutation: {\n`)
+    for (const mutation of kinds.mutation) {
+      await appendFile(resolversFileName, `\t\t${mutation.name}: ${mutation.importName},\n`);
     }
     await appendFile(resolversFileName, `\t},\n`)
   }
